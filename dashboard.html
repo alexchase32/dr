@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><meta charset="us-ascii">
+	<title>Dashboard</title>
+	<style type="text/css">body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .dashboard {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .dashboard h1 {
+      font-size: 24px;
+      color: #333;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    .dashboard .box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background-color: #f2f2f2;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .dashboard .box a {
+      text-decoration: none;
+      color: #333;
+      font-size: 18px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .dashboard .box a:hover {
+      color: #007bff;
+    }
+	</style>
+	<script src="dashboard_files/firebase-app-compat.js"></script><script src="dashboard_files/firebase-auth-compat.js"></script><script>
+    // Firebase configuration (replace with your own config)
+    var firebaseConfig = {
+apiKey: "AIzaSyB3hRTwZWBt8APeQq00tZU-pWkB45oijOY",
+authDomain: "multiquiz-9d1bc.firebaseapp.com",
+projectId: "multiquiz-9d1bc",
+storageBucket: "multiquiz-9d1bc.appspot.com",
+messagingSenderId: "101824383113",
+appId: "1:101824383113:web:bf56594685e421da41de58",
+measurementId: "G-YVJRWLLH1S"
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Check authentication state
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is authenticated, show the dashboard
+        document.getElementById("dashboard").style.display = "block";
+      } else {
+        // User is not authenticated, redirect to login or show an error message
+        // Replace "login.html" with your actual login page
+        window.location.href = "http://socialstudies.site/boric/login.html";
+      }
+    });
+  </script>
+</head>
+<body>
+<div class="dashboard" id="dashboard" style="display: none;">
+<h1>Welcome to the Dashboard</h1>
+
+<div class="box"><a href="https://socialstudies.site/boric/assignment.html">Assignments</a></div>
+
+<div class="box"><a href="#">Extra Credit</a></div>
+
+<div class="box"><a href="#">Missed Assignments</a></div>
+
+<div class="box"><a href="#">Grades</a></div>
+</div>
+
+
+
+
+    HTML 
+
+    Result
+    Skip Results Iframe
+
+
+
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Interface</title>
+  <!-- Include Bulma CSS -->
+  <link rel="stylesheet" href="dashboard_files/bulma.min.css">
+  <!-- Include GSAP Animation Library -->
+  <script src="dashboard_files/gsap.min.js"></script>
+  <style>
+    /* Navbar Styling */
+    .navbar-item {
+      color: #FFF;
+    }
+
+    /* Notification Circle Styling */
+    .notification-circle {
+      position: relative;
+      display: inline-block;
+      margin-left: 5px;
+    }
+
+    .notification-circle .circle {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: red;
+      color: white;
+      font-size: 12px;
+    }
+
+    /* Sidebar Styling */
+    #sidebar {
+      background-color: #FFF;
+      padding: 10px;
+      border-radius: 5px;
+      outline: 2px solid #FF69B4;
+    }
+
+    /* Central Div Styling */
+    #assignments {
+      background-color: #FFF;
+      padding: 20px;
+      border-radius: 5px;
+      outline: 2px solid #FF69B4;
+    }
+  </style>
+
+
+  <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #FF69B4;">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#" style="color: #FFF;">Logo</a>
+    </div>
+    <div id="navbar" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="#" id="gradesLink">
+          Grades<span class="notification-circle"><span class="circle" id="gradesCount"></span></span>
+        </a>
+        <a class="navbar-item" href="#" id="extraCreditLink">
+          Extra Credit<span class="notification-circle"><span class="circle" id="extraCreditCount"></span></span>
+        </a>
+        <a class="navbar-item" href="#" id="missingAssignmentsLink">
+          Missing Assignments<span class="notification-circle"><span class="circle" id="missingAssignmentsCount"></span></span>
+        </a>
+        <a class="navbar-item" href="#" id="projectsLink">
+          Projects<span class="notification-circle"><span class="circle" id="projectsCount"></span></span>
+        </a>
+        <a class="navbar-item" href="#" id="messagesLink">
+          Messages<span class="notification-circle"><span class="circle" id="messagesCount"></span></span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top: 20px;">
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <!-- Sidebar -->
+        <aside class="menu" id="sidebar">
+          <!-- Teacher Notes -->
+          <p class="menu-label" style="color: #FF69B4;">Teacher Notes</p>
+          <ul class="menu-list">
+            <li>Teacher note 1</li>
+            <li>Teacher note 2</li>
+            <li>Teacher note 3</li>
+          </ul>
+        </aside>
+      </div>
+      <div class="column">
+        <!-- Central Div -->
+        <div id="assignments"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include Firebase SDK -->
+  <script src="dashboard_files/firebase-app.js"></script>
+  <script src="dashboard_files/firebase-database.js"></script>
+  
+  <script>
+    // JavaScript code here
+  </script>
+
+<script src="dashboard_files/22404df36dee51d165.js"></script></body></html>

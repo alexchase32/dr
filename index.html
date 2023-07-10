@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><meta charset="us-ascii">
+	<title>Login Page</title>
+	<script src="index_files/firebase-app-compat.js"></script><script src="index_files/firebase-auth-compat.js"></script><script src="index_files/firebase-database-compat.js"></script><script>
+    // Initialize Firebase
+    var firebaseConfig = {
+apiKey: "AIzaSyB3hRTwZWBt8APeQq00tZU-pWkB45oijOY",
+authDomain: "multiquiz-9d1bc.firebaseapp.com",
+projectId: "multiquiz-9d1bc",
+storageBucket: "multiquiz-9d1bc.appspot.com",
+messagingSenderId: "101824383113",
+appId: "1:101824383113:web:bf56594685e421da41de58",
+measurementId: "G-YVJRWLLH1S"
+};
+
+    firebase.initializeApp(firebaseConfig);
+  </script>
+	<style type="text/css">.form-container {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .form-container input[type="email"],
+    .form-container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+	</style>
+</head>
+<body>
+<div class="form-container" id="login-form">
+<h2>Login</h2>
+<input id="email" placeholder="Email" type="email"> <input id="password" placeholder="Password" type="password"><button onclick="login()">Login</button>
+
+<p><a href="#" onclick="showSignUpForm()">Sign Up</a></p>
+
+<p><a href="#" onclick="showResetPasswordForm()">Reset Password</a></p>
+</div>
+
+<div class="form-container" id="signup-form" style="display: none;">
+<h2>Sign Up</h2>
+<input id="signup-email" placeholder="Email" type="email"> <input id="signup-password" placeholder="Password" type="password"><button onclick="signup()">Sign Up</button>
+
+<p><a href="#" onclick="showLoginForm()">Login</a></p>
+</div>
+
+<div class="form-container" id="reset-password-form" style="display: none;">
+<h2>Reset Password</h2>
+<input id="reset-email" placeholder="Email" type="email"><button onclick="resetPassword()">Reset Password</button>
+
+<p><a href="#" onclick="showLoginForm()">Login</a></p>
+</div>
+<script>
+    function login() {
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(function(user) {
+          // Handle successful login
+          console.log('User logged in:', user);
+          window.location.href = 'dashboard.html'; // Redirect to the dashboard page
+        })
+        .catch(function(error) {
+          // Handle login errors
+          console.log('Login error:', error);
+        });
+    }
+
+    function signup() {
+      var email = document.getElementById('signup-email').value;
+      var password = document.getElementById('signup-password').value;
+
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(function(user) {
+          // Handle successful signup
+          console.log('User signed up:', user);
+        })
+        .catch(function(error) {
+          // Handle signup errors
+          console.log('Signup error:', error);
+        });
+    }
+
+    function resetPassword() {
+      var email = document.getElementById('reset-email').value;
+
+      firebase.auth().sendPasswordResetEmail(email)
+        .then(function() {
+          // Password reset email sent successfully
+          console.log('Password reset email sent');
+        })
+        .catch(function(error) {
+          // Handle password reset errors
+          console.log('Password reset error:', error);
+        });
+    }
+
+    function showLoginForm() {
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('signup-form').style.display = 'none';
+      document.getElementById('reset-password-form').style.display = 'none';
+    }
+
+    function showSignUpForm() {
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('signup-form').style.display = 'block';
+      document.getElementById('reset-password-form').style.display = 'none';
+    }
+
+    function showResetPasswordForm() {
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('signup-form').style.display = 'none';
+      document.getElementById('reset-password-form').style.display = 'block';
+    }
+  </script>
+
+<p></p>
+
+<script src="index_files/22404df36dee51d165.js"></script></body></html>
